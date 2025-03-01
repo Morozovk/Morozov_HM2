@@ -11,4 +11,8 @@ dependencies {
             "org.junit.jupiter:junit-jupiter:5.10.0",
             "com.codeborne:selenide:6.19.1"
     )
+
+test {
+    useJUnitPlatform()
+     }
 }
