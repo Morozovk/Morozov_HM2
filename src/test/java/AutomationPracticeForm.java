@@ -2,6 +2,10 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+
+import java.io.File;
+
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -26,10 +30,17 @@ public class AutomationPracticeForm {
         $(".react-datepicker__year-select").selectOptionByValue("1998");
         $(".react-datepicker__month-select").selectOption("August");
         $(".react-datepicker__day.react-datepicker__day--023.react-datepicker__day--weekend").click();
-        $(".subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3").setValue("Programming");
-        //фейлится из за этого верхнего
-        $(".custom-control-label").click();
-
+        $("#subjectsInput").setValue("Programming");
+        $("#hobbies-checkbox-1 + label").click();
+        $("#hobbies-checkbox-3 + label").click();
+        $("#submit").scrollTo();
+        File file = new File("src/test/resources/foto.jpg");
+        $("#uploadPicture").uploadFile(file);
+        $("#currentAddress").setValue("Russia, Saint-Petersburg");
+        $("#state").click();
+        $("#state").$(byText("Haryana")).click();
+        $("#city").click();
+        $("#city").$(byText("Karnal")).click();
+        $("#submit").click();
     }
-
 }
