@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,5 +25,7 @@ public class TestBoxTest{
         $("#permanentAddress").setValue("Russia, Moscow");
         $("#submit").click();
     }
+
+
 
 }
