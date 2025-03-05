@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class AutomationPracticeForm {
 
@@ -42,5 +41,17 @@ public class AutomationPracticeForm {
         $("#city").click();
         $("#city").$(byText("Karnal")).click();
         $("#submit").click();
+
+        $("#example-modal-sizes-title-lg").$(byText("Thanks for submitting the form"));
+        $("table-responsive").$(byText("Kirill Morozov"));
+        $("table-responsive").$(byText("Morozov_kirill@mail.ru"));
+        $("table-responsive").$(byText("Male"));
+        $("table-responsive").$(byText("8800355555"));
+        $("table-responsive").$(byText("23 August,1998"));
+        $("table-responsive").$(byText("Sports, Music"));
+        $("table-responsive").$(byText("foto.jpg"));
+        $("table-responsive").$(byText("Russia, Saint-Petersburg"));
+        $("table-responsive").$(byText("Haryana Karnal"));
     }
+
 }
