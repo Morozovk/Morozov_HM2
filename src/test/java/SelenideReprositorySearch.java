@@ -19,6 +19,7 @@ public class SelenideReprositorySearch {
         $("#query-builder-test").setValue("Selenide").pressEnter();
         $(".search-match").click();
         $$("ul li").findBy(text("Wiki")).click();
+        $$("ul li").findBy(text("Soft assertions")).shouldHave(text("Soft assertions"));
         $$("ul li").findBy(text("Soft assertions")).click();
     }
 }
