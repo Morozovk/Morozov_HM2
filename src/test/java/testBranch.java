@@ -20,12 +20,14 @@ public class testBranch {
     String age = "26";
     String salary = "1000000";
     String departament = "Banking Department";
+    String departament2 = "Banking";
 
     @BeforeAll
     static void beforeAll(){
         Configuration.browserSize= "1980x1080";
         Configuration.baseUrl= "https://demoqa.com";
-        sleep(15000);
+        Configuration.pageLoadStrategy = "eager";
+        //sleep(30000);
     }
 
     @Test
@@ -76,7 +78,31 @@ public class testBranch {
         $("#userForm").$("#salary").setValue(salary);
         $("#userForm").$("#department").setValue(departament);
         $("#userForm").$("#submit").click();
-        //$$(".rt-tr-group").filter(visible).shouldHave(texts(firstName, lastName, userEmail, age, salary, departament));
-
+        $(".web-tables-wrapper").shouldHave(text(firstName));
+        $(".web-tables-wrapper").shouldHave(text(lastName));
+        $(".web-tables-wrapper").shouldHave(text(userEmail));
+        $(".web-tables-wrapper").shouldHave(text(age));
+        $(".web-tables-wrapper").shouldHave(text(salary));
+        $(".web-tables-wrapper").shouldHave(text(departament));
+        $("#edit-record-4").click();
+        $("#department-wrapper").$("#department").clear();
+        $("#department-wrapper").$("#department").setValue(departament2);
+        $(".text-right.col-md-2.col-sm-12").$("#submit").click();
+        $("#searchBox").setValue(firstName);
+        $(".rt-tbody").shouldHave(text(firstName));
+        $("#delete-record-4").click();
       }
+
+//      @Test
+//      void fifthTest() {
+//        open ("/buttons");
+//        $("h1[class=text-center]").shouldHave(text("Buttons"));
+//        $("button[id='doubleClickBtn']").doubleClick();
+//        $("p[id='doubleClickMessage']").shouldHave(text("You have done a double click"));
+//        $("#rightClickBtn").contextClick();
+//        $("#rightClickMessage").shouldHave(text("You have done a right click"));
+//        $("#bHmJN").click();
+//        $("#dynamicClickMessage").shouldHave(text("You have done a dynamic click"));
+//      }
+
 }
