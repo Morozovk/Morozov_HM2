@@ -1,6 +1,6 @@
+package tests;
+
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.selector.ByTagAndText;
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
