@@ -1,8 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.Strings;
-import org.openqa.selenium.devtools.v132.css.model.Value;
 import pages.components.CalendarComponent;
 
 import java.io.File;
