@@ -1,20 +1,11 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+package tests;
 
-import java.io.File;
+import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class TestBoxTest{
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
+public class TestBoxTest extends TestBase {
 
     @Test
     void firstTest() {
@@ -25,7 +16,4 @@ public class TestBoxTest{
         $("#permanentAddress").setValue("Russia, Moscow");
         $("#submit").click();
     }
-
-
-
 }
