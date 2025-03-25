@@ -40,23 +40,23 @@ public class AutomationPracticeForm extends TestBase {
     @Test
     void secondTest() {
         practiceFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(email)
-                .setGender("Male")
-                .setUserNumber(number)
-                .setDateBirth("23","August","1998")
-                .scrollpage()
-                .clickSubmit()
-                .checkMinForm(firstName,lastName,email,"Male",number,"23","August","1998");
+                        .setFirstName(firstName)
+                        .setLastName(lastName)
+                        .setUserEmail(email)
+                        .setGender("Male")
+                        .setUserNumber(number)
+                        .setDateBirth("23","August","1998")
+                        .scrollpage()
+                        .clickSubmit()
+                        .checkMinForm(firstName,lastName,email,"Male",number,"23","August","1998");
     }
 
 
     @Test
     void thirdTest() {
         practiceFormPage.openPage()
-                .scrollpage()
-                .clickSubmit();
+                        .scrollpage()
+                        .clickSubmit();
     }
 
 }
