@@ -3,18 +3,12 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 
+import static tests.TestData.*;
+
 
 public class AutomationPracticeFormTest extends TestBase {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
-
-
-    String firstName = "Kir";
-    String lastName = "Morozov";
-    String email = "morozovk18@mail.ru";
-    String number = "0987654321";
-    String currentAddress = "Russia, Saint-Petersburg";
-    String notCorrectEmail = "123qwe";
 
 
     @Test
@@ -23,26 +17,25 @@ public class AutomationPracticeFormTest extends TestBase {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(email)
-                .setGender("Male")
+                .setGender(gender)
                 .setUserNumber(number)
-                .setDateBirth("23","August","1998")
-                .setHobbies("Sports")
-                .setHobbies("Music")
+                .setDateBirth(dayBirth,monthBirth,yearBirth)
+                .setHobbies(hobbies)
                 .scrollPage()
                 .uploadPhoto("photo.jpg")
                 .setCurrentAddress(currentAddress)
-                .setState("Haryana")
-                .setCity("Karnal")
+                .setState(state)
+                .setCity(city)
                 .clickSubmit()
-                .checkTableValue("Student Name", firstName+ " " + lastName)
-                .checkTableValue("Student Email", "morozovk18@mail.ru")
-                .checkTableValue("Gender", "Male")
-                .checkTableValue("Mobile", "0987654321")
-                .checkTableValue("Date of Birth", "23 August,1998")
-                .checkTableValue("Hobbies", "Sports, Music")
+                .checkTableValue("Student Name", fullName)
+                .checkTableValue("Student Email", email)
+                .checkTableValue("Gender", gender)
+                .checkTableValue("Mobile", number)
+                .checkTableValue("Date of Birth", dayOfBirthday)
+                .checkTableValue("Hobbies", hobbies)
                 .checkTableValue("Picture", "photo.jpg")
                 .checkTableValue("Address", currentAddress)
-                .checkTableValue("State and City", "Haryana Karnal");
+                .checkTableValue("State and City", stateAndCity);
         }
 
     @Test
@@ -51,16 +44,16 @@ public class AutomationPracticeFormTest extends TestBase {
                         .setFirstName(firstName)
                         .setLastName(lastName)
                         .setUserEmail(email)
-                        .setGender("Male")
+                        .setGender(gender)
                         .setUserNumber(number)
-                        .setDateBirth("23","August","1998")
+                        .setDateBirth(dayBirth,monthBirth,yearBirth)
                         .scrollPage()
                         .clickSubmit()
-                        .checkTableValue("Student Name", firstName + " " + lastName)
-                        .checkTableValue("Student Email", "morozovk18@mail.ru")
-                        .checkTableValue("Gender", "Male")
-                        .checkTableValue("Mobile", "0987654321")
-                        .checkTableValue("Date of Birth", "23 August,1998");
+                        .checkTableValue("Student Name", fullName)
+                        .checkTableValue("Student Email", email)
+                        .checkTableValue("Gender", gender)
+                        .checkTableValue("Mobile", number)
+                        .checkTableValue("Date of Birth", dayOfBirthday);
 
     }
 
