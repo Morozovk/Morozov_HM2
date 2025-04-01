@@ -5,9 +5,9 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 
 public class TestData {
-    private static final Faker faker = new Faker((new Locale("en-GB")));
+    private final Faker faker = new Faker((new Locale("en-GB")));
 
-    public static String
+    public String
         firstName = faker.name().firstName(),
         lastName = faker.name().lastName(),
         email = faker.internet().emailAddress(),
@@ -22,11 +22,11 @@ public class TestData {
         city = selectCity(state);
 
 
-    public static String yearBirth = String.valueOf(faker.number().numberBetween(1950,2025));
-    public static String dayBirth = String.format("%02d", faker.number().numberBetween(1,28));
+    public String yearBirth = String.valueOf(faker.number().numberBetween(1950,2025));
+    public String dayBirth = String.format("%02d", faker.number().numberBetween(1,28));
 
 
-    public static String selectCity (String state) {
+    public String selectCity (String state) {
         return switch (state) {
             case "NCR" -> faker.options().option("Delhi" , "Gurgaon" , "Noida");
             case "Uttar Pradesh" -> faker.options().option("Agra" , "Lucknow" , "Merrut");
@@ -36,10 +36,7 @@ public class TestData {
         };
     }
 
-    public static String dayOfBirthday = dayBirth + " " + monthBirth + "," + yearBirth,
+    public String dayOfBirthday = dayBirth + " " + monthBirth + "," + yearBirth,
     stateAndCity = state + " " + city,
     fullName = firstName + " " + lastName;
-
-
-
 }
