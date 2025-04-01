@@ -3,57 +3,56 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 
-import static tests.TestData.*;
 
 
 public class AutomationPracticeFormTest extends TestBase {
 
     PracticeFormPage practiceFormPage = new PracticeFormPage();
-
+    TestData testData = new TestData();
 
     @Test
     void fullTest() {
         practiceFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setUserEmail(email)
-                .setGender(gender)
-                .setUserNumber(number)
-                .setDateBirth(dayBirth,monthBirth,yearBirth)
-                .setHobbies(hobbies)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setUserEmail(testData.email)
+                .setGender(testData.gender)
+                .setUserNumber(testData.number)
+                .setDateBirth(testData.dayBirth,testData.monthBirth,testData.yearBirth)
+                .setHobbies(testData.hobbies)
                 .scrollPage()
                 .uploadPhoto("photo.jpg")
-                .setCurrentAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
+                .setCurrentAddress(testData.currentAddress)
+                .setState(testData.state)
+                .setCity(testData.city)
                 .clickSubmit()
-                .checkTableValue("Student Name", fullName)
-                .checkTableValue("Student Email", email)
-                .checkTableValue("Gender", gender)
-                .checkTableValue("Mobile", number)
-                .checkTableValue("Date of Birth", dayOfBirthday)
-                .checkTableValue("Hobbies", hobbies)
+                .checkTableValue("Student Name", testData.fullName)
+                .checkTableValue("Student Email", testData.email)
+                .checkTableValue("Gender", testData.gender)
+                .checkTableValue("Mobile", testData.number)
+                .checkTableValue("Date of Birth", testData.dayOfBirthday)
+                .checkTableValue("Hobbies", testData.hobbies)
                 .checkTableValue("Picture", "photo.jpg")
-                .checkTableValue("Address", currentAddress)
-                .checkTableValue("State and City", stateAndCity);
+                .checkTableValue("Address", testData.currentAddress)
+                .checkTableValue("State and City", testData.stateAndCity);
         }
 
     @Test
     void minimalTest() {
         practiceFormPage.openPage()
-                        .setFirstName(firstName)
-                        .setLastName(lastName)
-                        .setUserEmail(email)
-                        .setGender(gender)
-                        .setUserNumber(number)
-                        .setDateBirth(dayBirth,monthBirth,yearBirth)
+                        .setFirstName(testData.firstName)
+                        .setLastName(testData.lastName)
+                        .setUserEmail(testData.email)
+                        .setGender(testData.gender)
+                        .setUserNumber(testData.number)
+                        .setDateBirth(testData.dayBirth,testData.monthBirth,testData.yearBirth)
                         .scrollPage()
                         .clickSubmit()
-                        .checkTableValue("Student Name", fullName)
-                        .checkTableValue("Student Email", email)
-                        .checkTableValue("Gender", gender)
-                        .checkTableValue("Mobile", number)
-                        .checkTableValue("Date of Birth", dayOfBirthday);
+                        .checkTableValue("Student Name", testData.fullName)
+                        .checkTableValue("Student Email", testData.email)
+                        .checkTableValue("Gender", testData.gender)
+                        .checkTableValue("Mobile", testData.number)
+                        .checkTableValue("Date of Birth", testData.dayOfBirthday);
 
     }
 
@@ -61,7 +60,7 @@ public class AutomationPracticeFormTest extends TestBase {
     @Test
     void negativeTest() {
         practiceFormPage.openPage()
-                        .setUserEmail(notCorrectEmail)
+                        .setUserEmail(testData.notCorrectEmail)
                         .scrollPage()
                         .clickSubmit()
                         .checkVisibleTable();
