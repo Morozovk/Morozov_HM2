@@ -24,7 +24,7 @@ public class AutomationPracticeFormTest extends TestBase {
                 .uploadPhoto("photo.jpg")
                 .setCurrentAddress(testData.currentAddress())
                 .setState(testData.state())
-                .setCity(testData.city)
+                .setCity(testData.city())
                 .clickSubmit()
                 .checkTableValue("Student Name", testData.fullName)
                 .checkTableValue("Student Email", testData.email())

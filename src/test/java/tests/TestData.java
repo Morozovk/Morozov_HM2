@@ -47,7 +47,9 @@ public class TestData {
         return faker.options().option("NCR" , "Uttar Pradesh" , "Haryana" , "Rajasthan");
     }
 
-    public String city = selectCity(state());
+    public String city() {
+        return selectCity(state());
+    }
 
     public String yearBirth() {
         return String.valueOf(faker.number().numberBetween(1950,2025));
@@ -57,9 +59,8 @@ public class TestData {
         return String.format("%02d", faker.number().numberBetween(1,28));
     }
 
-
     public String selectCity (String state) {
-        return switch (state) {
+        return switch(state) {
             case "NCR" -> faker.options().option("Delhi" , "Gurgaon" , "Noida");
             case "Uttar Pradesh" -> faker.options().option("Agra" , "Lucknow" , "Merrut");
             case "Haryana" -> faker.options().option("Karnal" , "Panipat");
@@ -69,6 +70,6 @@ public class TestData {
     }
 
     public String dayOfBirthday = dayBirth() + " " + monthBirth() + "," + yearBirth(),
-    stateAndCity = state() + " " + city,
+    stateAndCity = state() + " " + city(),
     fullName = firstName() + " " + lastName();
 }
