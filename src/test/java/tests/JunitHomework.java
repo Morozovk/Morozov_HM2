@@ -5,8 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -45,10 +50,31 @@ public class JunitHomework {
 
     @Disabled ("Проверка работы аннотации Disabled")
     @Test
-    void test() {
+    void gitGubSearchTest() {
         open("https://github.com/home");
         $(".HeaderMenu").$(byText("Solutions")).hover();
         $("a[href='https://github.com/enterprise']").click();
         $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
+    }
+
+    static Stream<Arguments> textGitHubTest() {
+        return Stream.of(
+                Arguments.of("Kir" , "Kir@mail.ru" , "Russia" , "Saint-Petersburg"),
+                Arguments.of("Lina" , "Lina@mail,ru" , "Russia" , "Saint-Petersburg" ,
+                        "Plans & pricing"),
+                Arguments.of("Miron", "Miron@mail.ru", "UK", "London")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("textGitHubTest")
+    void checkButtonGitHubTest(String fullName, String email, String currentAddress, String permanentAddress) {
+        {
+            open("https://demoqa.com/text-box");
+            $("#userName").setValue(fullName);
+            $("#userEmail").setValue(email);
+            $("#currentAddress").setValue(currentAddress);
+            $("#permanentAddress").setValue(permanentAddress);
+            $("#submit").scrollTo().click();
+        }
     }
 }
