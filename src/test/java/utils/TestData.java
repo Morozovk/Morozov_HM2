@@ -1,4 +1,4 @@
-package tests;
+package utils;
 
 import com.github.javafaker.Faker;
 
@@ -49,10 +49,6 @@ public class TestData {
         return faker.options().option("NCR" , "Uttar Pradesh" , "Haryana" , "Rajasthan");
     }
 
-//    public String getCity() {
-//        return getCity(getSelectCity());
-//    }
-
     public String getYearBirth() {
         return String.valueOf(faker.number().numberBetween(1950,2025));
     }
@@ -71,7 +67,4 @@ public class TestData {
         };
     }
 
-    public String dayOfBirthday = getDayBirth() + " " + getMonthBirth() + "," + getYearBirth(),
-    stateAndCity = getState() + " " + getSelectCity(getState()),
-    fullName = getFirstName() + " " + getLastName();
 }

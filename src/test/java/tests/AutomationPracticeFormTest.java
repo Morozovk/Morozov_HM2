@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
-
+import utils.TestData;
 
 
 public class AutomationPracticeFormTest extends TestBase {
@@ -10,50 +10,64 @@ public class AutomationPracticeFormTest extends TestBase {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
     TestData testData = new TestData();
 
+    String firstName = testData.getFirstName();
+    String lastName = testData.getLastName();
+    String email = testData.getEmail();
+    String gender = testData.getGender();
+    String number = testData.getNumber();
+    String dayBirth = testData.getDayBirth();
+    String monthBirth = testData.getMonthBirth();
+    String yearBirth = testData.getYearBirth();
+    String hobbies = testData.getHobbies();
+    String currentAdress = testData.getCurrentAddress();
+    String state = testData.getState();
+    String city = testData.getSelectCity(state);
+    String uploadPhoto = "photo.jpg";
+    String subject = "English";
+
     @Test
     void fullTest() {
         practiceFormPage.openPage()
-                .setFirstName(testData.getFirstName())
-                .setLastName(testData.getLastName())
-                .setUserEmail(testData.getEmail())
-                .setGender(testData.getGender())
-                .setUserNumber(testData.getNumber())
-                .setDateBirth(testData.getDayBirth(),testData.getMonthBirth(),testData.getYearBirth())
-                .setHobbies(testData.getHobbies())
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(email)
+                .setGender(gender)
+                .setUserNumber(number)
+                .setDateBirth(dayBirth, monthBirth, yearBirth)
+                .setHobbies(hobbies)
                 .scrollPage()
-                .uploadPhoto("photo.jpg")
-                .setCurrentAddress(testData.getCurrentAddress())
-                .setState(testData.getState())
-                .setCity(testData.getSelectCity(testData.getState()))
+                .uploadPhoto(uploadPhoto)
+                .setCurrentAddress(currentAdress)
+                .setState(state)
+                .setCity(city)
                 .clickSubmit()
-                .checkTableValue("Student Name", testData.fullName)
-                .checkTableValue("Student Email", testData.getEmail())
-                .checkTableValue("Gender", testData.getGender())
-                .checkTableValue("Mobile", testData.getNumber())
-                .checkTableValue("Date of Birth", testData.dayOfBirthday)
-                .checkTableValue("Hobbies", testData.getHobbies())
-                .checkTableValue("Picture", "photo.jpg")
-                .checkTableValue("Address", testData.getCurrentAddress())
-                .checkTableValue("State and City", testData.stateAndCity);
+                .checkTableValue("Student Name", firstName + " " + lastName)
+                .checkTableValue("Student Email", email)
+                .checkTableValue("Gender", gender)
+                .checkTableValue("Mobile", number)
+                .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth)
+                .checkTableValue("Hobbies", hobbies)
+                .checkTableValue("Picture", uploadPhoto)
+                .checkTableValue("Address", currentAdress)
+                .checkTableValue("State and City", state + " " + city);
         }
 
     @Test
     void minimalTest() {
         practiceFormPage.openPage()
-                        .setFirstName(testData.getFirstName())
-                        .setLastName(testData.getLastName())
-                        .setUserEmail(testData.getEmail())
-                        .setGender(testData.getGender())
-                        .setUserNumber(testData.getNumber())
-                        .setDateBirth(testData.getDayBirth(),testData.getMonthBirth(),testData.getYearBirth())
+                        .setFirstName(firstName)
+                        .setLastName(lastName)
+                        .setUserEmail(email)
+                        .setGender(gender)
+                        .setUserNumber(number)
+                        .setDateBirth(dayBirth, monthBirth, yearBirth)
                         .scrollPage()
                         .clickSubmit()
-                        .checkTableValue("Student Name", testData.fullName)
-                        .checkTableValue("Student Email", testData.getEmail())
-                        .checkTableValue("Gender", testData.getGender())
-                        .checkTableValue("Mobile", testData.getNumber())
-                        .checkTableValue("Date of Birth", testData.dayOfBirthday);
-
+                        .checkTableValue("Student Name", firstName + " " + lastName)
+                        .checkTableValue("Student Email", email)
+                        .checkTableValue("Gender", gender)
+                        .checkTableValue("Mobile", number)
+                        .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth);
     }
 
 

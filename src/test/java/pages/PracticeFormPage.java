@@ -25,6 +25,7 @@ public class PracticeFormPage {
             cityImput = $("#city"),
             submitClick = $("#submit");
 
+
     private CalendarComponent calendarComponent = new CalendarComponent();
     public TableComponent tableComponent = new TableComponent();
 
