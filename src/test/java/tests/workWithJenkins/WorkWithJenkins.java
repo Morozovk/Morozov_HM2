@@ -1,5 +1,6 @@
 package tests.workWithJenkins;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 import tests.TestBase;
@@ -26,6 +27,7 @@ public class WorkWithJenkins extends TestBase{
         String subject = "English";
 
         @Test
+        @Tag("full_form")
         void fullTest() {
             practiceFormPage.openPage()
                     .setFirstName(firstName)
