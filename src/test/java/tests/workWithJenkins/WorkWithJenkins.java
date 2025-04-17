@@ -1,12 +1,25 @@
 package tests.workWithJenkins;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 import tests.TestBase;
 import utils.TestData;
 
-public class WorkWithJenkins extends TestBase{
+public class WorkWithJenkins {
+
+        @BeforeAll()
+        static void beforeAll() {
+                Configuration.browserSize = "1920x1080";
+                Configuration.baseUrl = "https://demoqa.com";
+                Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+                SelenideLogger.addListener("allure", new AllureSelenide());
+                }
+
 
         PracticeFormPage practiceFormPage = new PracticeFormPage();
         TestData testData = new TestData();
@@ -29,6 +42,7 @@ public class WorkWithJenkins extends TestBase{
         @Test
         @Tag("full_form")
         void fullTest() {
+
             practiceFormPage.openPage()
                     .setFirstName(firstName)
                     .setLastName(lastName)
