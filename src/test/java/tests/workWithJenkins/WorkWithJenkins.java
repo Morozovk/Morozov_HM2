@@ -10,6 +10,10 @@ import pages.PracticeFormPage;
 import tests.TestBase;
 import utils.TestData;
 
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
+
 public class WorkWithJenkins {
 
         @BeforeAll()
@@ -37,34 +41,44 @@ public class WorkWithJenkins {
         String state = testData.getState();
         String city = testData.getSelectCity(state);
         String uploadPhoto = "photo.jpg";
-        String subject = "English";
 
         @Test
         @Tag("full_form")
         void fullTest() {
 
-            practiceFormPage.openPage()
-                    .setFirstName(firstName)
-                    .setLastName(lastName)
-                    .setUserEmail(email)
-                    .setGender(gender)
-                    .setUserNumber(number)
-                    .setDateBirth(dayBirth, monthBirth, yearBirth)
-                    .setHobbies(hobbies)
-                    .scrollPage()
-                    .uploadPhoto(uploadPhoto)
-                    .setCurrentAddress(currentAdress)
-                    .setState(state)
-                    .setCity(city)
-                    .clickSubmit()
-                    .checkTableValue("Student Name", firstName + " " + lastName)
-                    .checkTableValue("Student Email", email)
-                    .checkTableValue("Gender", gender)
-                    .checkTableValue("Mobile", number)
-                    .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth)
-                    .checkTableValue("Hobbies", hobbies)
-                    .checkTableValue("Picture", uploadPhoto)
-                    .checkTableValue("Address", currentAdress)
-                    .checkTableValue("State and City", state + " " + city);
+                step ("Открываем форму", () -> {
+                        practiceFormPage.openPage();
+                });
+
+                step ("Вводим значиния", () -> {
+                        practiceFormPage.setFirstName(firstName)
+                                .setLastName(lastName)
+                                .setUserEmail(email)
+                                .setGender(gender)
+                                .setUserNumber(number)
+                                .setDateBirth(dayBirth, monthBirth, yearBirth)
+                                .setHobbies(hobbies)
+                                .scrollPage()
+                                .uploadPhoto(uploadPhoto)
+                                .setCurrentAddress(currentAdress)
+                                .setState(state)
+                                .setCity(city);
+                });
+
+                step ("Кликаем по кнопке Submit", () -> {
+                        practiceFormPage.clickSubmit();
+                });
+
+                step ("проверяем ранее заполненные данные", () -> {
+                        practiceFormPage.checkTableValue("Student Name", firstName + " " + lastName)
+                                .checkTableValue("Student Email", email)
+                                .checkTableValue("Gender", gender)
+                                .checkTableValue("Mobile", number)
+                                .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth)
+                                .checkTableValue("Hobbies", hobbies)
+                                .checkTableValue("Picture", uploadPhoto)
+                                .checkTableValue("Address", currentAdress)
+                                .checkTableValue("State and City", state + " " + city);;
+                });
         }
     }
