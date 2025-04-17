@@ -56,9 +56,3 @@ task full_form_test(type: Test) {
         includeTags("full_form")
     }
 }
-
-task demoqa_test(type: Test) {
-    useJUnitPlatform {
-        includeTags("demoqa")
-    }
-}
