@@ -51,8 +51,26 @@ tasks.withType(Test) {
     }
 }
 
-task full_form_test(type: Test) {
+task All_Test_test(type: Test) {
     useJUnitPlatform {
-        includeTags("full_form")
+        includeTags("All_Test")
+    }
+}
+
+task Full_Test_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Full_Test")
+    }
+}
+
+task Short_Test_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Short_Test")
+    }
+}
+
+task Negative_Test_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("Negative_Test")
     }
 }

@@ -62,7 +62,8 @@ public class WorkWithJenkins {
         String uploadPhoto = "photo.jpg";
 
         @Test
-        @Tag("full_form")
+        @Tag("All_Test")
+        @Tag("Full_Test")
         void fullTest() {
 
                 step ("Открываем форму", () -> {
@@ -100,4 +101,37 @@ public class WorkWithJenkins {
                                 .checkTableValue("State and City", state + " " + city);;
                 });
         }
+
+        @Test
+        @Tag("All_Test")
+        @Tag("Short_Test")
+        void minimalTest() {
+                practiceFormPage.openPage()
+                        .setFirstName(firstName)
+                        .setLastName(lastName)
+                        .setUserEmail(email)
+                        .setGender(gender)
+                        .setUserNumber(number)
+                        .setDateBirth(dayBirth, monthBirth, yearBirth)
+                        .scrollPage()
+                        .clickSubmit()
+                        .checkTableValue("Student Name", firstName + " " + lastName)
+                        .checkTableValue("Student Email", email)
+                        .checkTableValue("Gender", gender)
+                        .checkTableValue("Mobile", number)
+                        .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth);
+        }
+
+
+        @Test
+        @Tag("All_Test")
+        @Tag("Negative_Test")
+        void negativeTest() {
+                practiceFormPage.openPage()
+                        .setUserEmail(testData.notCorrectEmail)
+                        .scrollPage()
+                        .clickSubmit()
+                        .checkVisibleTable();
+        }
+
     }
