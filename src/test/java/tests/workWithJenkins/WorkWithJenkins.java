@@ -20,10 +20,13 @@ public class WorkWithJenkins {
 
         @BeforeAll()
         static void beforeAll() {
-                Configuration.browserSize = ("ScreenResolution");
-                Configuration.baseUrl = "https://demoqa.com";
-                SelenideLogger.addListener("allure", new AllureSelenide());
+                Configuration.browser = System.getProperty("Browser", "Chrome");
+                Configuration.browserVersion = System.getProperty("BrowserVersion", "122");
+                Configuration.browserSize = System.getProperty("BrowserSize", "1920x1080");
                 Configuration.remote = System.getProperty("HostStarted");
+                Configuration.baseUrl = "https://demoqa.com";
+
+                SelenideLogger.addListener("allure", new AllureSelenide());
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("selenoid:options", Map.<String, Object>of(
