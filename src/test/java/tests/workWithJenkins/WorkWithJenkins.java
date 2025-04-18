@@ -20,7 +20,7 @@ public class WorkWithJenkins {
 
         @BeforeAll()
         static void beforeAll() {
-                Configuration.browserSize = "1920x1080";
+                Configuration.browserSize = ("ScreenResolution");
                 Configuration.baseUrl = "https://demoqa.com";
                 SelenideLogger.addListener("allure", new AllureSelenide());
                 Configuration.remote = System.getProperty("HostStarted");
