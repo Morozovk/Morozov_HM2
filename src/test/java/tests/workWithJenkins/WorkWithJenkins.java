@@ -23,7 +23,7 @@ public class WorkWithJenkins {
                 Configuration.browserSize = "1920x1080";
                 Configuration.baseUrl = "https://demoqa.com";
                 SelenideLogger.addListener("allure", new AllureSelenide());
-                Configuration.remote = System.getProperty("HostStarted");
+                Configuration.remote = System.getProperty("remoteUrl");
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setCapability("selenoid:options", Map.<String, Object>of(
