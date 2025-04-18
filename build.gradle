@@ -21,6 +21,9 @@ repositories {
     mavenCentral()
 }
 
+def allureVersion = "2.21.0",
+    selenideVersion = "6.19.1"
+
 dependencies {
     testImplementation(
             "com.codeborne:selenide:7.7.3",
@@ -37,6 +40,19 @@ dependencies {
     )
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task full_form_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("full_form")
+    }
 }

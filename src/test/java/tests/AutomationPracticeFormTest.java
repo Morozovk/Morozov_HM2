@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 import utils.TestData;
@@ -26,7 +27,7 @@ public class AutomationPracticeFormTest extends TestBase {
     String subject = "English";
 
     @Test
-    void fullTest() {
+    void FullFormTest() {
         practiceFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
