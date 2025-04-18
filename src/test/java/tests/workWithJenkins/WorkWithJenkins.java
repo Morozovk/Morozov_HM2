@@ -22,7 +22,6 @@ public class WorkWithJenkins {
         static void beforeAll() {
                 Configuration.browserSize = "1920x1080";
                 Configuration.baseUrl = "https://demoqa.com";
-                Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
                 SelenideLogger.addListener("allure", new AllureSelenide());
 
                 DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -98,7 +97,7 @@ public class WorkWithJenkins {
                                 .checkTableValue("Hobbies", hobbies)
                                 .checkTableValue("Picture", uploadPhoto)
                                 .checkTableValue("Address", currentAdress)
-                                .checkTableValue("State and City", state + " " + city);;
+                                .checkTableValue("State and City", state + " " + city);
                 });
         }
 
@@ -106,20 +105,31 @@ public class WorkWithJenkins {
         @Tag("All_Test")
         @Tag("Short_Test")
         void minimalTest() {
-                practiceFormPage.openPage()
-                        .setFirstName(firstName)
-                        .setLastName(lastName)
-                        .setUserEmail(email)
-                        .setGender(gender)
-                        .setUserNumber(number)
-                        .setDateBirth(dayBirth, monthBirth, yearBirth)
-                        .scrollPage()
-                        .clickSubmit()
-                        .checkTableValue("Student Name", firstName + " " + lastName)
-                        .checkTableValue("Student Email", email)
-                        .checkTableValue("Gender", gender)
-                        .checkTableValue("Mobile", number)
-                        .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth);
+                step("Открываем форму", () -> {
+                        practiceFormPage.openPage();
+                });
+
+                step("Вводим значения", () -> {
+                        practiceFormPage.setFirstName(firstName)
+                                .setLastName(lastName)
+                                .setUserEmail(email)
+                                .setGender(gender)
+                                .setUserNumber(number)
+                                .setDateBirth(dayBirth, monthBirth, yearBirth);
+                });
+
+                step("Тапаем по Submit", () -> {
+                        practiceFormPage.scrollPage()
+                                .clickSubmit();
+                });
+
+                step("Проверяем ранее введенные значения", () -> {
+                        practiceFormPage.checkTableValue("Student Name", firstName + " " + lastName)
+                                .checkTableValue("Student Email", email)
+                                .checkTableValue("Gender", gender)
+                                .checkTableValue("Mobile", number)
+                                .checkTableValue("Date of Birth", dayBirth + " " + monthBirth + "," + yearBirth);
+                });
         }
 
 
@@ -127,11 +137,18 @@ public class WorkWithJenkins {
         @Tag("All_Test")
         @Tag("Negative_Test")
         void negativeTest() {
-                practiceFormPage.openPage()
-                        .setUserEmail(testData.notCorrectEmail)
-                        .scrollPage()
-                        .clickSubmit()
-                        .checkVisibleTable();
+                step("Открываем форму", () -> {
+                        practiceFormPage.openPage();
+                });
+
+                step("Тапаем по Submit", () -> {
+                        practiceFormPage.scrollPage()
+                                .clickSubmit();
+                });
+
+                step("Проверяем отобразилась ли страница", () -> {
+                        practiceFormPage.checkVisibleTable();
+                });
         }
 
     }
