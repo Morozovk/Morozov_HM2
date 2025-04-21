@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.PracticeFormPage;
 import utils.TestData;
+
 import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
