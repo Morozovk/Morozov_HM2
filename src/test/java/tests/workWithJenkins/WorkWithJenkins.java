@@ -20,10 +20,10 @@ public class WorkWithJenkins {
 
         @BeforeAll()
         static void beforeAll() {
-                Configuration.browser = System.getProperty("Browser", "Chrome");
-                Configuration.browserVersion = System.getProperty("BrowserVersion", "122");
-                Configuration.browserSize = System.getProperty("BrowserSize", "1920x1080");
-                Configuration.remote = System.getProperty("HostStarted");
+                Configuration.browser = System.getProperty("browser", "chrome");
+                Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+                Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+                Configuration.remote = System.getProperty("remoteUrl");
                 Configuration.baseUrl = "https://demoqa.com";
 
                 SelenideLogger.addListener("allure", new AllureSelenide());
